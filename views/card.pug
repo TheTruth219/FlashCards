@@ -1,9 +1,16 @@
 extends layout.pug
 block content
         section#content
-          h2= prompt
+          h2= text
           if hint
             p
               i Hint: #{hint}
-    
-  
+          if side === 'question'    
+            a(href=`${id}?side=${sideToShow}`) Answer 
+          else 
+              
+              a( href=`${id}?side=${sideToShow}`) Question 
+          br
+          br  
+          a(href="/cards") Next Card
+          
