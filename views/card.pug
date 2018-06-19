@@ -1,16 +1,34 @@
 extends layout.pug
 block content
-        section#content
-          h2= text
-          if hint
-            p
-              i Hint: #{hint}
-          if side === 'question'    
-            a(href=`${id}?side=${sideToShow}`) Answer 
-          else 
-              
-              a( href=`${id}?side=${sideToShow}`) Question 
-          br
-          br  
-          a(href="/cards") Next Card
-          
+  section.flashcards
+    
+      if side === 'question' 
+        .card.card-question
+          .card-header  
+          h1.card-title Question
+          #content
+            h2= text
+            if hint
+              p
+                i Hint: #{hint} 
+          .card-flip-wrap        
+            a(href=`${id}?side=${sideToShow}`) 
+              img.card-flip(src="/static/img/flip.svg")
+          .card-next
+            a(href="/cards") 
+              img(src="/static/img/next.svg")        
+      else 
+       
+        .card.card-answer
+          .card-header  
+          h1.card-title Answer
+          #content
+            h2= text  
+          .card-flip-wrap  
+            a( href=`${id}?side=${sideToShow}`) 
+              img.card-flip(src="/static/img/flip.svg")
+          .card-next
+            a(href="/cards") 
+              img(src="/static/img/next.svg")
+                
+  script(src="/static/app.js")  
