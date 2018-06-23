@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const app = express();
-const PORT= 3000;
+let PORT= app.listen(process.env.PORT || 3000);
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(cookieParser());
@@ -32,6 +32,11 @@ app.use(( err, req, res, next ) => {
   res.render('error');
 });
 
+if (PORT === 3000) {
 app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT} !`);
+  console.log("Listening on port 3000!");
+  });
+} else
+app.listen(PORT,()=>{
+  console.log("Listening!")
 });
